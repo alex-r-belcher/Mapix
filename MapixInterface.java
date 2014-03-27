@@ -114,17 +114,6 @@ public class MapixInterface {
 		
 	}
 	
-	/**
-	 * THIS WILL PROBABLY BE IMPLEMENTED IN THE PHOTO OBJECT not here. 
-	 * Extracts metadata (GPS and Time/Date) from photo
-	 * I'm thinking the param will be an instance of a Photo object created in import photos
-	 * This function will fill in the metadata fields in the photo object
-	 * @param 
-	 */
-	public void extractMetadata()
-	{
-		
-	}
 	
 	/** 
 	 * This function pulls in a map covering the area included in the obtained GPS coordinates
