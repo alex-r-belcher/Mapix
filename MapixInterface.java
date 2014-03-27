@@ -21,13 +21,22 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import javax.swing.JPanel;
 
 
 
 public class MapixInterface {
 
-	private JFrame frame;
+	private JFrame frmMapix;
 	private JTextField txtPathtophotos;
+	private JButton btnInportPhotos;
+	private JButton btnMap;
+	private JSlider slider;
 
 	/**
 	 * Launch the application.
@@ -37,7 +46,7 @@ public class MapixInterface {
 			public void run() {
 				try {
 					MapixInterface window = new MapixInterface();
-					window.frame.setVisible(true);
+					window.frmMapix.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,46 +65,40 @@ public class MapixInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null); //using absolute layout
+		frmMapix = new JFrame();
+		frmMapix.setTitle("Mapix");
+		frmMapix.setBounds(100, 100, 525, 325);
+		frmMapix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMapix.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("398px:grow"),
+				ColumnSpec.decode("70px"),},
+			new RowSpec[] {
+				RowSpec.decode("default:grow"),
+				RowSpec.decode("4dlu:grow"),
+				RowSpec.decode("max(10dlu;default):grow"),
+				RowSpec.decode("4dlu:grow"),
+				RowSpec.decode("190px:grow"),
+				RowSpec.decode("4dlu:grow"),
+				RowSpec.decode("default:grow"),
+				RowSpec.decode("7dlu:grow"),
+				RowSpec.decode("1px"),}));
 		
-		//slider for timeline manipulation
-		JSlider slider = new JSlider();
-		slider.setBounds(0, 243, 448, 16);
-		frame.getContentPane().add(slider, BorderLayout.SOUTH);
-		
-		//Currently empty place holder panel .. use this for map 
-		Panel panel = new Panel();
-		panel.setBounds(312, 205, -305, -202);
-		frame.getContentPane().add(panel);
-		
-	
-	    //Text field to enter path to folder containing photos	
 		txtPathtophotos = new JTextField();
 		txtPathtophotos.setText("Path/to/photos");
-		txtPathtophotos.setBounds(312, 10, 124, 19);
-		frame.getContentPane().add(txtPathtophotos);
+		frmMapix.getContentPane().add(txtPathtophotos, "2, 1, fill, default");
 		txtPathtophotos.setColumns(10);
 		
-		//Button to initiate mapping of photos 
-		JButton btnMapPhotos = new JButton("Map Photos");
-		btnMapPhotos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnMapPhotos.setBounds(314, 208, 124, 25);
-		frame.getContentPane().add(btnMapPhotos);
+		JPanel panel = new JPanel();
+		frmMapix.getContentPane().add(panel, "1, 1, 1, 5, fill, fill");
 		
-		//Button to initiate importing photos/extracting metadata
-		JButton btnImportPhotos = new JButton("Import");
-		btnImportPhotos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnImportPhotos.setBounds(312, 31, 117, 25);
-		frame.getContentPane().add(btnImportPhotos);
+		btnInportPhotos = new JButton("Import");
+		frmMapix.getContentPane().add(btnInportPhotos, "2, 3");
+		
+		slider = new JSlider();
+		frmMapix.getContentPane().add(slider, "1, 7");
+		
+		btnMap = new JButton("Map!");
+		frmMapix.getContentPane().add(btnMap, "2, 7");
 	}
 	
 	/**
